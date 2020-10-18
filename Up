@@ -1,0 +1,19 @@
+import urllib.request
+import socket
+
+print("#############################################")
+def check_url( url, timeout=5 ):
+    try:
+        return urllib.request.urlopen(url,timeout=timeout).getcode() == 200
+    except url.URLError as e:
+        return False
+    except socket.timeout as e:
+        print("False")
+
+fh = open('Url.txt')
+for line in fh:
+    url = "https://"
+    url = url+line
+    print(url , "----------------->" , check_url(url))
+fh.close()
+print("#############################################")
